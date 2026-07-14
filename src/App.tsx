@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import styles from "./components/Site.module.css";
 import { S } from "./components/pages/_styles";
 
@@ -11,6 +11,11 @@ const PATH = {
 } as const;
 
 export const App = () => {
+  const navigate = useNavigate();
+  const navigateHandler = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
       <div className={styles.header}>
@@ -35,6 +40,11 @@ export const App = () => {
           </S.NavWrapper>
         </div>
         <div className={styles.content}>
+          <div className={styles.HorizontalNavigation}>
+            <button onClick = {navigateHandler} className={styles.ButtonLikeLink}>
+              НАЗАД
+            </button>
+          </div>
           <Outlet />
           {/* <Routes> */}
           {/* <Route path={"/"} element={<Navigate to={PATH.PAGE1} />} />
